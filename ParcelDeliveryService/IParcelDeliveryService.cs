@@ -5,6 +5,10 @@ namespace ParcelDelivery.Service
 {
     public interface IParcelDeliveryService
     {
-      void ParcelProcess(Parcel parcel);
+        /// <summary>
+        /// Parcel process
+        /// </summary>
+        /// <param name="parcel"></param>
+        void ParcelProcess(Parcel parcel);
     }
 }
