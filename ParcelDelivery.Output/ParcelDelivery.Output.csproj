@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ParcelDelivery.Service.Impl\ParcelDelivery.Service.Impl.csproj" />
+    <ProjectReference Include="..\ParcelDeliveryService\ParcelDelivery.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Files\Container.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
