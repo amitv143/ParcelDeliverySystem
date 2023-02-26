@@ -1,5 +1,6 @@
 ﻿using ParcelDelivery.Model.Payload.Request;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,11 @@ namespace ParcelDelivery.Service.Impl
 {
     public class ParcelDeliveryService 
     {
+
+         public ParcelDeliveryService()
+        {
+
+        }
         public ParcelDeliveryResult Send(Organization organization, Parcel parcel)
         {
             var result = new ParcelDeliveryResult();
@@ -37,5 +43,19 @@ namespace ParcelDelivery.Service.Impl
             return result;
         }
 
+        public static Organization CreateOrganization()
+        {
+            return new Organization
+            {
+                Departments = new List<Department>
+                {
+                    new InsuranceDepartment(),
+                    new MailDepartment(),
+                    new RegularDepartment(),
+                    new HeavyDepartment(),
+                    new AddDepartment()
+                }
+            };
+        }
     }
 }

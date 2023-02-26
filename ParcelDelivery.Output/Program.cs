@@ -15,12 +15,11 @@ namespace ParcelDelivery.Output
         {
             var parcelsContainer = XMLParseUtility.ParseXml<ParcelsContainer>(XmlFilePath);
             Console.WriteLine($"************** {parcelsContainer.Parcels.Count} Parcels is ready to process **************");
-            var defaultOrganization = CreateOrganization();
-
+            var defaultOrganization = ParcelDeliveryService.CreateOrganization();
             Process(defaultOrganization, parcelsContainer);
 
             Console.WriteLine();
-            Console.WriteLine("*************************     Done!    *************************");
+            Console.WriteLine("*************************  Done!  *************************");
         }
 
         private static void Process(Organization organization, ParcelsContainer container)
@@ -31,22 +30,9 @@ namespace ParcelDelivery.Output
             {
                 service.Send(organization, parcel);
 
-                Thread.Sleep(3000);//Just for simulation
+                Thread.Sleep(3000);
             }
         }
-        private static Organization CreateOrganization()
-        {
-            return new Organization
-            {
-                Departments = new List<Department>
-                {
-                    new InsuranceDepartment(),
-                    new MailDepartment(),
-                    new RegularDepartment(),
-                    new HeavyDepartment(),
-                    new AddDepartment()
-                }
-            };
-        }
+        
     }
 }

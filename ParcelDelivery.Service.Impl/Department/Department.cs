@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParcelDelivery.Service.Impl
 {
-    public abstract class Department
+    public abstract class Department : IDepartment
     {
         public abstract bool TrackingInfo(Parcel parcel);
         public void ShowParcelInfo(Parcel parcel)
@@ -17,16 +17,4 @@ namespace ParcelDelivery.Service.Impl
         }
     }
 
-    public class AddDepartment : Department, IParcelDeliveryService
-    {
-        public override bool TrackingInfo(Parcel parcel)
-        {
-            return parcel.Weight > 50;
-        }
-
-        public void ParcelProcess(Parcel parcel)
-        {
-
-        }
-    }
 }

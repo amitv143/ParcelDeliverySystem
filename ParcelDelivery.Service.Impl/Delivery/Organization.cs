@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParcelDelivery.Service.Impl
 {
-    public class Organization
+    public class Organization 
     {
         public IList<Department> Departments { get; set; }
 
