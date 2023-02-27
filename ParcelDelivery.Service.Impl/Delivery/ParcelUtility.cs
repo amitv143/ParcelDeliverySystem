@@ -11,15 +11,20 @@ namespace ParcelDelivery.Service.Impl
 
         public T ParseXml<T>(string xmlFilePath)
         {
-            var serializer = new XmlSerializer(typeof(T));
-            var t = default(T);
-
-            using (var streamReader = File.OpenText(xmlFilePath))
+            if (File.Exists(xmlFilePath))
             {
-                t = (T)serializer.Deserialize(streamReader);
-            }
+                var serializer = new XmlSerializer(typeof(T));
+                var t = default(T);
 
-            return t;
+                using (var streamReader = File.OpenText(xmlFilePath))
+                {
+                    t = (T)serializer.Deserialize(streamReader);
+                }
+
+                return t;
+            }
+            else
+                throw new FileNotFoundException("This file was not found.");
         }
 
         public static Organization CreateOrganization()
