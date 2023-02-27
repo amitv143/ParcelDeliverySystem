@@ -12,7 +12,7 @@ namespace ParcelDelivery.Service.Impl
         {
             Console.WriteLine();
             Console.WriteLine("***********************************************************");
-            Console.WriteLine($"From: {parcel.Sender.Name}, To: {parcel.Recipient.Name}");
+            Console.WriteLine($"Parcel Weight: {parcel.Weight}, Parcel Value: {parcel.Value}");
             Console.WriteLine();
         }
     }
