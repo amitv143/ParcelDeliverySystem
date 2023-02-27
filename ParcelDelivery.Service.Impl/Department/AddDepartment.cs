@@ -1,4 +1,5 @@
 ﻿using ParcelDelivery.Model.Payload.Request;
+using ParcelDelivery.Service.Impl.Contract;
 
 namespace ParcelDelivery.Service.Impl
 {
@@ -13,6 +14,11 @@ namespace ParcelDelivery.Service.Impl
         public void ParcelProcess(Parcel parcel)
         {
 
+        }
+
+        public ParcelDeliveryResult Send(Parcel parcel)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

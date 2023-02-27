@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParcelDelivery.Service", "ParcelDeliveryService\ParcelDelivery.Service.csproj", "{FBEFC3EE-2A9C-4858-8546-774DD9A331D9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParcelDelivery.Service.Impl", "ParcelDelivery.Service.Impl\ParcelDelivery.Service.Impl.csproj", "{1212DADF-7B8F-41B9-B0B4-94F5DF261A4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParcelDelivery.Model", "ParcelDelivery.Model\ParcelDelivery.Model.csproj", "{469A3C93-9CCB-4255-BFFC-EA3881D6333E}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FBEFC3EE-2A9C-4858-8546-774DD9A331D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBEFC3EE-2A9C-4858-8546-774DD9A331D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBEFC3EE-2A9C-4858-8546-774DD9A331D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBEFC3EE-2A9C-4858-8546-774DD9A331D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1212DADF-7B8F-41B9-B0B4-94F5DF261A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1212DADF-7B8F-41B9-B0B4-94F5DF261A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1212DADF-7B8F-41B9-B0B4-94F5DF261A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU

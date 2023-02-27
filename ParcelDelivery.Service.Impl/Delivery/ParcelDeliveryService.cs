@@ -1,26 +1,35 @@
 ﻿using ParcelDelivery.Model.Payload.Request;
+using ParcelDelivery.Service.Impl.Contract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ParcelDelivery.Service.Impl
 {
-    public class ParcelDeliveryService 
+    public class ParcelDeliveryService : IParcelDeliveryService
     {
+        private readonly IOrganization _organization;
 
-         public ParcelDeliveryService()
+         public ParcelDeliveryService(IOrganization organization)
         {
-
+             _organization= organization;
         }
-        public ParcelDeliveryResult Send(Organization organization, Parcel parcel)
+
+        public void ParcelProcess(Parcel parcel)
         {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// It will distribute the department based on business rules.
+        /// </summary>
+        /// <param name="parcel"></param>
+        /// <returns></returns>
+        public ParcelDeliveryResult Send(Parcel parcel)
+        {
+            _organization.Departments = CreateOrganization();
             var result = new ParcelDeliveryResult();
-
-            var signers = organization.GetSignerDepartments();
-
-            var processors = organization.GetProcessorDepartments();
-
+            var signers = _organization.GetSignerDepartments();
+            var processors = _organization.GetProcessorDepartments();
 
             var signerDepartment = signers.FirstOrDefault(d => d.TrackingInfo(parcel));
             if (signerDepartment != null)
@@ -41,6 +50,22 @@ namespace ParcelDelivery.Service.Impl
             result.IsSent = true;
 
             return result;
+        }
+
+        /// <summary>
+        /// List of departments
+        /// </summary>
+        /// <returns></returns>
+        private List<Department> CreateOrganization()
+        {
+            return new List<Department>
+                {
+                    new InsuranceDepartment(),
+                    new MailDepartment(),
+                    new RegularDepartment(),
+                    new HeavyDepartment(),
+                    new AddDepartment()
+                };
         }
     }
 }

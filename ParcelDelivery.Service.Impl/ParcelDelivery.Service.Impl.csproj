@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ParcelDeliveryService\ParcelDelivery.Service.csproj" />
+    <ProjectReference Include="..\ParcelDelivery.Model\ParcelDelivery.Model.csproj" />
   </ItemGroup>
 
 </Project>
