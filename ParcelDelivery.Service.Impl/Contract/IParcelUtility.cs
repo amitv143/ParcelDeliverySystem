@@ -1,4 +1,4 @@
-﻿namespace ParcelDelivery.Service
+﻿namespace ParcelDelivery.Service.Impl.Contract
 {
     public interface IParcelUtility
     {

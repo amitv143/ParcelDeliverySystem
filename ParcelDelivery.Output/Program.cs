@@ -1,12 +1,9 @@
-﻿using ParcelDelivery.Model.Payload.Request;
-using ParcelDelivery.Service;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ParcelDelivery.Model.Payload.Request;
 using ParcelDelivery.Service.Impl;
+using ParcelDelivery.Service.Impl.Contract;
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ParcelDelivery.Output
 {
@@ -24,43 +21,44 @@ namespace ParcelDelivery.Output
         }
         private static void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddSingleton<IParcelUtility, ParcelUtility>();
+            services.AddScoped<IParcelUtility, ParcelUtility>();
+            services.AddScoped<IOrganization, Organization>();
+            services.AddScoped<IParcelDeliveryService, ParcelDeliveryService>();
         }
     }
-/// <summary>
-/// it is executor class to excute the buisness logic
-/// </summary>
+    /// <summary>
+    /// it is executor class to excute the buisness logic
+    /// </summary>
     public class Executor
     {
         private readonly IParcelUtility  _parcelUtility;
+        private readonly IOrganization _organization;
+        private readonly IParcelDeliveryService _parcelDeliveryService;
         private const string XmlFilePath = @"Files/Container.xml";
 
-        public Executor(IParcelUtility parcelUtility)
+        public Executor(IParcelUtility parcelUtility, IOrganization organization, IParcelDeliveryService parcelDeliveryService )
         {
             _parcelUtility = parcelUtility;
+            _organization = organization;
+            _parcelDeliveryService = parcelDeliveryService;
         }
 
         public void Execute()
         {
             var parcelsContainer = _parcelUtility.ParseXml<ParcelsContainer>(XmlFilePath);
             Console.WriteLine($"-------------{parcelsContainer.Parcels.Count} Parcels is ready to process -----------");
-
-            var defaultOrganization = ParcelUtility.CreateOrganization();
-            Process(defaultOrganization, parcelsContainer);
-
+            Process(parcelsContainer);
             Console.WriteLine();
             Console.WriteLine("----------------- Done! ------------------------");
         }
-        private static void Process(Organization organization, ParcelsContainer container)
+        private void Process(ParcelsContainer container)
         {
-            var service = new ParcelDeliveryService();
 
             foreach (var parcel in container.Parcels)
             {
-                service.Send(organization, parcel);
+                _parcelDeliveryService.Send(parcel);
 
-                Thread.Sleep(3000);
+                Thread.Sleep(3000);//just for simulation
             }
         }
     }

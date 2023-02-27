@@ -1,7 +1,7 @@
 ﻿using ParcelDelivery.Model.Payload.Request;
 using System.Threading.Tasks;
 
-namespace ParcelDelivery.Service
+namespace ParcelDelivery.Service.Impl.Contract
 {
     public interface IParcelDeliveryService
     {
@@ -10,5 +10,12 @@ namespace ParcelDelivery.Service
         /// </summary>
         /// <param name="parcel"></param>
         void ParcelProcess(Parcel parcel);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parcel"></param>
+        /// <returns></returns>
+        ParcelDeliveryResult Send(Parcel parcel);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParcelDelivery.Model.Payload.Request;
-using System;
 using System.IO;
-using System.Net;
 
 namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
 {
@@ -17,7 +15,6 @@ namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
         {
             parcelUtility = new ParcelUtility();
         }
-
 
         [TestMethod]
         public void WhenInvokedWithValidXMLPath_ShouldReturnSuccessResponse()

@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Moq;
 using ParcelDelivery.Model.Payload.Request;
+using ParcelDelivery.Service.Impl.Contract;
+using System.Collections.Generic;
 
 namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
 {
@@ -10,25 +10,35 @@ namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
     public class ParcelDeliveryServiceTest
     {
         private ParcelDeliveryService parcelDeliveryService;
+        private readonly Mock<IOrganization> _mockMrganization =new Mock<IOrganization>() ;
+
 
 
         [TestInitialize]
         public void TestInitialize()
         {
-            parcelDeliveryService = new ParcelDeliveryService();
-        }
+            parcelDeliveryService = new ParcelDeliveryService(_mockMrganization.Object);
 
+            _mockMrganization.Setup(X => X.Departments).Returns(new List<Department>
+                {
+                    new InsuranceDepartment(),
+                    new MailDepartment(),
+                    new RegularDepartment(),
+                    new HeavyDepartment(),
+                    new AddDepartment()
+                });
+        }
 
         [TestMethod]
         public void WhenInvokedWithValidRequest_ShouldReturnSuccessResponse()
         {
             //Arrange
-            Organization organization = new Organization();
+          
             Parcel parcel = new Parcel();
-            organization.Departments = new List<Department>() { };
-
+            parcel.Weight = 0.2;
+            parcel.Value = 100;
             //Act
-            var result = parcelDeliveryService.Send(organization, parcel);
+            var result = parcelDeliveryService.Send( parcel);
 
             //Assert
             Assert.IsNotNull(result);
@@ -39,20 +49,12 @@ namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
         public void WhenInvokedWithWeight_ShouldReturnSuccessResponse()
         {
             //Arrange
-            Organization organization = new Organization();
             Parcel parcel = new Parcel();
             parcel.Weight = 2;
             parcel.Value = 100;
 
-            organization.Departments = new List<Department>() {  new InsuranceDepartment(),
-                    new MailDepartment(),
-                    new RegularDepartment(),
-                    new HeavyDepartment(),
-                    new AddDepartment()
-                     };
-
             //Act
-            var result = parcelDeliveryService.Send(organization, parcel);
+            var result = parcelDeliveryService.Send(parcel);
 
             //Assert
             Assert.IsNotNull(result);
@@ -64,20 +66,13 @@ namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
         public void WhenInvokedWithValueGreaterThan100_ShouldReturnSuccessResponse()
         {
             //Arrange
-            Organization organization = new Organization();
+    
             Parcel parcel = new Parcel();
             parcel.Weight = 2;
             parcel.Value = 10001;
 
-            organization.Departments = new List<Department>() {  new InsuranceDepartment(),
-                    new MailDepartment(),
-                    new RegularDepartment(),
-                    new HeavyDepartment(),
-                    new AddDepartment()
-                     };
-
             //Act
-            var result = parcelDeliveryService.Send(organization, parcel);
+          var result = parcelDeliveryService.Send(parcel);
 
             //Assert
             Assert.IsNotNull(result);
