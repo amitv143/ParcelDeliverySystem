@@ -42,20 +42,5 @@ namespace ParcelDelivery.Service.Impl
 
             return result;
         }
-
-        public static Organization CreateOrganization()
-        {
-            return new Organization
-            {
-                Departments = new List<Department>
-                {
-                    new InsuranceDepartment(),
-                    new MailDepartment(),
-                    new RegularDepartment(),
-                    new HeavyDepartment(),
-                    new AddDepartment()
-                }
-            };
-        }
     }
 }

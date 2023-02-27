@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ParcelDelivery.Model.Payload.Request
 {
@@ -11,9 +8,9 @@ namespace ParcelDelivery.Model.Payload.Request
         public string Street { get; set; }
         [JsonProperty("housenumber", Order = 2)]
         public int HouseNumber { get; set; }
-        [JsonProperty("postalcode", Order = 1)]
+        [JsonProperty("postalcode", Order = 3)]
         public string PostalCode { get; set; }
-        [JsonProperty("city", Order = 1)]
+        [JsonProperty("city", Order = 4)]
         public string City { get; set; }
     }
 }
