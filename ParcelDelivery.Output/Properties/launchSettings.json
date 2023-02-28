@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ParcelDelivery.Output": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
