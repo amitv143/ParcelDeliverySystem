@@ -36,7 +36,7 @@ namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
         public void WhenInvokedWithWeightLessThan1_ShouldReturnMailDept()
         {
             //Arrange
-          
+
             Parcel parcel = new Parcel();
             parcel.Weight = 0.2;
             parcel.Value = 100;
@@ -98,7 +98,7 @@ namespace ParcelDelivery.Service.Impl.UnitTest.DeliveryTest
         public void WhenInvokedWithValueGreaterThan100_ShouldReturnInsuranceDept()
         {
             //Arrange
-    
+
             Parcel parcel = new Parcel();
             parcel.Weight = 2;
             parcel.Value = 10001;
